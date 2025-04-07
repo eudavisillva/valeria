@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Casamento - Davi & Valéria</title>
+
+    <style>
+        /* Estilos CSS originais mantidos (cores, fontes, fundo cósmico, etc.) */
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Exo+2:wght@200;400&display=swap');
+
+        :root {
+            --bg-space-deep: #0c041a;
+            --bg-space-light: #2a1a4a;
+            --star-light: #ffffff;
+            --star-bright: #fff0cc;
+            --nebula-pink: #ff75d1;
+            --nebula-purple: #c299ff;
+            --nebula-blue: #82eaff;
+            --heart-red: #ff4d6d; /* Cor para detalhes românticos */
+            --text-glow: #f0e8ff; /* Texto um pouco mais roxo/branco */
+            --highlight-gold: #f7f3a1;
+            /* Cor para botões de confirmação/links */
+            --action-button-bg: linear-gradient(45deg, var(--nebula-blue), var(--nebula-purple));
+            --action-button-hover: linear-gradient(45deg, var(--nebula-purple), var(--nebula-blue));
+            --container-bg: rgba(12, 4, 26, 0.85);
+            --message-bg: rgba(12, 4, 26, 0.9);
+            --details-bg: rgba(42, 26, 74, 0.7); /* Fundo sutil para detalhes */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--bg-space-deep);
+            background-image:
+                radial-gradient(ellipse 50% 60% at 15% 20%, rgba(194, 153, 255, 0.2) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 50% at 85% 75%, rgba(255, 77, 109, 0.2) 0%, transparent 60%),
+                linear-gradient(170deg, var(--bg-space-deep) 30%, var(--bg-space-light) 100%);
+            background-attachment: fixed;
+            color: var(--text-glow);
+            line-height: 1.8;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem; /* Aumentar padding para telas menores */
+        }
+
+        /* --- Efeitos de Fundo Cósmico (Mantidos) --- */
+        #cosmic-background { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; pointer-events: none; overflow: hidden; }
+        #cosmic-background::before { content: ''; position: absolute; width: 400px; height: 400px; bottom: 5%; left: 5%; background: radial-gradient(circle at center, rgba(255, 77, 109, 0.3) 10%, transparent 70%); border-radius: 50% 50% 30% 70% / 60% 40% 60% 40%; filter: blur(50px); opacity: 0.7; transform: rotate(-15deg); animation: pulseHeart 8s infinite ease-in-out alternate; }
+        @keyframes pulseHeart { from { transform: scale(0.9) rotate(-15deg); opacity: 0.5; } to { transform: scale(1.1) rotate(-10deg); opacity: 0.8; } }
+        #star-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        .star { position: absolute; background-color: var(--star-light); border-radius: 50%; box-shadow: 0 0 5px var(--star-light); animation: twinkle 5s infinite ease-in-out alternate; }
+        .bright-star { background-color: var(--star-bright); box-shadow: 0 0 8px var(--star-bright), 0 0 15px var(--star-bright); z-index: 0; }
+        @keyframes twinkle { from { opacity: 0.2; } to { opacity: 1; } }
+        @keyframes shooting-star-anim { 0% { transform: translate(0, 0) scale(1); opacity: 0; } 10% { opacity: 1; } 100% { transform: translate(-120vw, 120vh) scale(0.3); opacity: 0; } }
+        .shooting-star { position: absolute; width: 80px; height: 1.5px; background: linear-gradient(to left, var(--star-bright), transparent); border-radius: 1px; top: 50%; left: 110%; z-index: 1; animation: shooting-star-anim 6s linear infinite; }
+
+        /* --- Conteúdo Principal (Adaptado) --- */
+        .container {
+            max-width: 750px;
+            width: 100%;
+            padding: 2rem 2.5rem; /* Ajuste no padding */
+            background: var(--container-bg);
+            border-radius: 30px;
+            border: 1px solid var(--nebula-purple);
+            box-shadow: 0 0 50px rgba(194, 153, 255, 0.4);
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            text-align: center;
+            animation: fadeInContainer 1.5s ease-out;
+        }
+        @keyframes fadeInContainer { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+
+        /* Título Principal do Convite */
+        .main-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3em; /* Um pouco maior */
+            color: var(--highlight-gold);
+            text-shadow: 0 0 10px var(--highlight-gold), 0 0 15px var(--nebula-pink);
+            margin-bottom: 1rem;
+        }
+
+        /* Nomes dos Noivos */
+        .couple-names {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2em;
+            color: var(--nebula-pink);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Seção de Mensagem aos Convidados */
+        #welcome-message {
+            margin-bottom: 2rem;
+            font-size: 1.1em; /* Tamanho ajustado */
+            font-weight: 200;
+            padding: 1.5rem;
+            background: var(--message-bg);
+            border-radius: 15px;
+            box-shadow: inset 0 0 15px rgba(194, 153, 255, 0.2);
+        }
+
+        /* Seção com Detalhes do Casamento */
+        #wedding-details {
+            background: var(--details-bg);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2.5rem;
+            border: 1px solid rgba(194, 153, 255, 0.3);
+        }
+        #wedding-details h3 {
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 400;
+            font-size: 1.5em;
+            color: var(--nebula-blue);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        #wedding-details p {
+            font-size: 1.1em;
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+         #wedding-details strong { /* Destaca informações chave */
+            color: var(--highlight-gold);
+            font-weight: 400;
+        }
+        #wedding-details address { /* Para endereços */
+             font-style: normal;
+             font-size: 1em;
+             color: var(--nebula-purple);
+         }
+
+        /* Seção de RSVP e Links */
+        #actions-section {
+            display: flex;
+            flex-direction: column; /* Empilha os botões/links */
+            align-items: center;
+            gap: 15px; /* Espaço entre os itens */
+            margin-top: 1.5rem;
+        }
+
+        .action-button {
+            display: inline-block; /* Comportamento de botão */
+            padding: 12px 30px; /* Padding ajustado */
+            font-size: 1.1em; /* Tamanho ajustado */
+            font-weight: 700;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            text-decoration: none; /* Remove sublinhado de links */
+            background: var(--action-button-bg);
+            box-shadow: 0 5px 15px rgba(130, 234, 255, 0.3); /* Sombra azulada */
+            min-width: 200px; /* Largura mínima */
+        }
+
+        .action-button:hover {
+            background: var(--action-button-hover);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 20px rgba(130, 234, 255, 0.5);
+        }
+
+        footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(194, 153, 255, 0.2);
+            color: var(--nebula-purple);
+            font-size: 0.9em;
+            font-weight: 200;
+        }
+
+        /* Media Query para telas menores */
+        @media (max-width: 600px) {
+            .container { padding: 1.5rem; }
+            .main-title { font-size: 2.5em; }
+            .couple-names { font-size: 1.8em; }
+            #welcome-message { font-size: 1em; padding: 1rem; }
+            #wedding-details h3 { font-size: 1.3em; }
+            #wedding-details p { font-size: 1em; }
+            .action-button { padding: 10px 25px; font-size: 1em; min-width: 180px; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="cosmic-background">
+        <div id="star-container"></div>
+        </div>
+
+    <div class="container">
+        <header>
+            <h1 class="main-title">Celebre Conosco</h1>
+            <h2 class="couple-names">Davi & Valéria</h2>
+        </header>
+
+        <main>
+            <section id="welcome-message">
+                <p>Com os corações transbordando de alegria e as estrelas como testemunhas, convidamos você para celebrar a união de nossas vidas!</p>
+                <p>Em um universo de possibilidades, nossos caminhos se cruzaram e, desde então, compartilhamos uma jornada de amor, cumplicidade e sonhos. Agora, queremos dar o próximo passo e oficializar nosso amor sob o céu de São Mateus do Maranhão.</p>
+                <p>Sua presença tornará este momento ainda mais especial e luminoso!</p>
+            </section>
+
+            <section id="wedding-details">
+                <h3>Detalhes da Celebração</h3>
+                <p><strong>Data:</strong> Sábado, 26 de Abril de 2025</p>
+                <p><strong>Horário:</strong> Às 17:00 horas</p>
+                 <p><strong>Cerimônia:</strong>
+                   <address>
+                        [Nome do Local da Cerimônia]<br>
+                        [Endereço Completo da Cerimônia], São Mateus do Maranhão - MA
+                   </address>
+                </p>
+                <p><strong>Recepção:</strong>
+                   <address>
+                        [Nome do Local da Recepção, se diferente]<br>
+                        [Endereço Completo da Recepção], São Mateus do Maranhão - MA
+                   </address>
+                    <small>(Se for no mesmo local da cerimônia, ajuste o texto)</small>
+                </p>
+                 </section>
+
+            <section id="actions-section">
+                <a href="https://wa.me/55XXXXXXXXXXX?text=Olá%20Davi%20e%20Valéria!%20Confirmo%20minha%20presença%20no%20casamento.%20Meu(s)%20nome(s)%20é(são):%20" target="_blank" class="action-button" id="rsvp-button">
+                    Confirmar Presença (RSVP)
+                </a>
+                </section>
+        </main>
+
+        <footer>
+            <p>Com todo nosso amor, Davi e Valéria.</p>
+            <p>São Mateus do Maranhão - MA | Abril de 2025</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Efeitos de Fundo (Estrelas, etc.) ---
+            // O código JavaScript para gerar estrelas e estrelas cadentes foi MANTIDO igual.
+            const starContainer = document.getElementById('star-container');
+            const starDensityFactor = 2.5;
+            const maxStars = 800;
+            const screenWidth = window.innerWidth;
+            const numberOfStars = Math.min(maxStars, Math.floor(screenWidth / starDensityFactor));
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                const starType = Math.random();
+                if (starType > 0.97) { star.classList.add('bright-star'); }
+                const size = Math.random() * 1.5 + 0.5;
+                const finalSize = starType > 0.97 ? size * 1.8 : size;
+                star.style.width = `${finalSize}px`; star.style.height = `${finalSize}px`;
+                star.style.top = `${Math.random() * 100}%`; star.style.left = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 12}s`;
+                star.style.animationDuration = `${Math.random() * 6 + 4}s`;
+                starContainer.appendChild(star);
+            }
+
+            const numShooting = Math.floor(Math.random() * 2) + 1;
+            for (let i = 0; i < numShooting; i++) {
+                const shootingStar = document.createElement('div');
+                shootingStar.classList.add('shooting-star');
+                shootingStar.style.top = `${Math.random() * 70 + 15}%`;
+                shootingStar.style.animationDelay = `${Math.random() * 20 + 5}s`;
+                shootingStar.style.animationDuration = `${Math.random() * 3 + 4}s`;
+                starContainer.appendChild(shootingStar);
+            }
+
+            // --- Lógica dos Botões de Ação ---
+            // REMOVIDO: Lógica dos botões "Sim" e "Não" do pedido.
+            // ADICIONADO (Exemplo): Você pode adicionar interatividade aqui se precisar,
+            // mas para links simples (RSVP, Lista), o HTML puro com `<a>` já funciona.
+
+            // Exemplo: Se quisesse mostrar um alerta ao clicar no RSVP
+            // const rsvpButton = document.getElementById('rsvp-button');
+            // if (rsvpButton) {
+            //     rsvpButton.addEventListener('click', (e) => {
+            //         // Previne a ação padrão do link *apenas* se quiser fazer algo antes
+            //         // e.preventDefault();
+            //         // alert('Você será redirecionado para confirmar sua presença. Obrigado!');
+            //         // window.open(rsvpButton.href, '_blank'); // Abre em nova aba
+            //         console.log("Botão RSVP clicado!");
+            //     });
+            // }
+
+        });
+    </script>
+
+</body>
+  </html>
