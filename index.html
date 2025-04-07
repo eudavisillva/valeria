@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Universo de Valéria ♡ Por Davi</title> <style>
+        @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@200;400;700&display=swap'); /* Fonte mais espacial */
+
+        :root {
+            --bg-space-deep: #05020e; /* Ainda mais escuro */
+            --bg-space-mid: #1a0d30;  /* Roxo médio */
+            --star-light: #ffffff;
+            --star-bright: #feffea;
+            --star-blue-tint: rgba(173, 216, 230, 0.8);
+            --star-yellow-tint: rgba(255, 255, 200, 0.8);
+            --nebula-pink: #ff75d1;
+            --nebula-purple: #c299ff;
+            --nebula-blue: #82eaff;
+            --nebula-deep-red: rgba(255, 50, 100, 0.7);
+            --galaxy-core: rgba(255, 255, 230, 0.8);
+            --text-glow: #e8e8e8;
+            --highlight-gold: #f7f3a1;
+            --button-bg: rgba(194, 153, 255, 0.65);
+            --button-hover-bg: rgba(255, 117, 209, 0.85);
+            --container-bg: rgba(5, 2, 14, 0.8); /* Mais escuro e opaco */
+            --poem-bg: rgba(5, 2, 14, 0.92); /* Quase opaco */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif; /* Nova fonte */
+            background-color: var(--bg-space-deep);
+            /* Gradiente de fundo mais complexo simulando profundidade e nebulosas */
+            background-image:
+                /* Nebulosa Sutil 1 (Topo Esquerdo) */
+                radial-gradient(ellipse 40% 50% at 20% 30%, rgba(130, 234, 255, 0.15) 0%, transparent 70%),
+                /* Nebulosa Sutil 2 (Baixo Direita) */
+                radial-gradient(ellipse 50% 60% at 80% 70%, rgba(255, 117, 209, 0.15) 0%, transparent 60%),
+                /* Faixa de poeira cósmica (diagonal) */
+                linear-gradient(140deg, transparent 40%, rgba(194, 153, 255, 0.08) 50%, transparent 60%),
+                /* Base escura com gradiente */
+                linear-gradient(180deg, var(--bg-space-deep) 0%, var(--bg-space-mid) 100%);
+            background-attachment: fixed;
+            color: var(--text-glow);
+            line-height: 1.8; /* Leve aumento no espaçamento */
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- Efeitos de Fundo Cósmico --- */
+
+        /* Contêiner para elementos de fundo */
+        #cosmic-background {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -2; /* Mais fundo */
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        /* Galáxias e Nebulosas Estáticas (Exemplos) */
+        .distant-galaxy, .colorful-nebula {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0; /* Inicia invisível, anima para aparecer */
+            filter: blur(40px); /* Bem borrado */
+            animation: fadeInCosmic 15s ease-out forwards;
+            animation-delay: 2s; /* Aparece depois de um tempo */
+        }
+        @keyframes fadeInCosmic {
+            to { opacity: 0.6; filter: blur(30px); }
+        }
+
+        /* Exemplo de Galáxia Distante (espiral achatada) */
+        .galaxy-1 {
+            width: 350px; height: 120px; /* Elipse */
+            background: radial-gradient(ellipse at center, var(--galaxy-core) 5%, rgba(194, 153, 255, 0.3) 40%, transparent 70%);
+            top: 15%; left: 10%;
+            transform: rotate(-25deg); /* Inclinada */
+            opacity: 0.5; /* Mais sutil */
+            filter: blur(20px); /* Menos borrada que nebulosa */
+        }
+
+        /* Exemplo de Nebulosa Colorida */
+        .nebula-1 {
+            width: 450px; height: 450px;
+            background: radial-gradient(circle at center, var(--nebula-deep-red) 10%, var(--nebula-pink) 35%, var(--nebula-purple) 60%, transparent 80%);
+            bottom: 5%; right: 5%;
+        }
+        /* Adicione mais .galaxy-X e .nebula-X com posições e cores diferentes */
+         .nebula-2 {
+            width: 300px; height: 300px;
+            background: radial-gradient(circle at center, var(--nebula-blue) 15%, var(--nebula-purple) 50%, transparent 75%);
+            top: 50%; left: 5%;
+            animation-delay: 4s;
+        }
+
+        /* Contêiner das Estrelas Geradas */
+        #star-container {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1; /* Acima das nebulosas/galáxias, mas abaixo do conteúdo */
+            pointer-events: none;
+        }
+
+        /* Estilo Base das Estrelas */
+        .star {
+            position: absolute;
+            background-color: var(--star-light);
+            border-radius: 50%;
+            box-shadow: 0 0 5px var(--star-light);
+            animation: twinkle 4s infinite ease-in-out alternate; /* Alternate para suavizar */
+        }
+        /* Estrela mais brilhante */
+        .bright-star {
+            background-color: var(--star-bright);
+            box-shadow: 0 0 8px var(--star-bright), 0 0 15px var(--star-bright);
+            z-index: 0; /* Levemente acima das outras estrelas */
+        }
+        /* Animação de Piscar (Twinkle) */
+        @keyframes twinkle {
+            from { opacity: 0.3; transform: scale(0.6); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Animação Estrela Cadente */
+        @keyframes shooting-star-anim {
+            0% { transform: translate(0, 0) scale(1); opacity: 0; }
+            10% { opacity: 1; } /* Aparece rápido */
+            100% { transform: translate(-150vw, 150vh) scale(0.3); opacity: 0; } /* Move e desaparece */
+        }
+        .shooting-star {
+            position: absolute;
+            width: 100px; /* Largura da "cauda" */
+            height: 2px; /* Espessura */
+            background: linear-gradient(to left, var(--star-light), transparent); /* Cauda com gradiente */
+            border-radius: 1px;
+            top: 50%; /* Posição inicial (será randomizada por JS) */
+            left: 110%; /* Começa fora da tela à direita */
+            z-index: 1; /* Acima das estrelas normais */
+            animation: shooting-star-anim 5s linear infinite; /* Duração e repetição */
+        }
+
+
+        /* --- Estilos do Conteúdo Principal --- */
+
+        .container {
+            max-width: 900px; /* Um pouco mais largo */
+            margin: 4rem auto;
+            padding: 3rem;
+            background: var(--container-bg);
+            border-radius: 25px;
+            border: 1px solid var(--nebula-blue); /* Borda azul */
+            box-shadow: 0 0 40px rgba(130, 234, 255, 0.4); /* Brilho azul */
+            flex-grow: 1;
+            z-index: 10; /* Garante acima de todo o fundo */
+            backdrop-filter: blur(8px); /* Vidro fosco mais intenso */
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            border-bottom: 1px dashed var(--nebula-purple);
+            padding-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 3.5em;
+            font-weight: 700; /* Mais peso */
+            color: var(--nebula-blue);
+            text-shadow: 0 0 10px var(--nebula-blue), 0 0 20px var(--nebula-purple), 0 0 25px var(--nebula-pink);
+            margin-bottom: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            font-size: 1.3em;
+            color: var(--nebula-pink);
+            font-weight: 200; /* Bem leve */
+        }
+
+        #poem-display {
+            background: var(--poem-bg);
+            padding: 2.5rem; /* Mais padding interno */
+            border-radius: 20px;
+            border: 1px solid var(--nebula-pink);
+            margin-bottom: 2.5rem;
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: inset 0 0 20px rgba(255, 117, 209, 0.3);
+        }
+
+        #poem-title {
+            color: var(--highlight-gold);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2em; /* Maior */
+            font-weight: 700;
+            text-shadow: 0 0 8px var(--highlight-gold);
+        }
+
+        #poem-text {
+            white-space: pre-wrap;
+            font-size: 1.2em; /* Ligeiramente maior */
+            text-align: center;
+            color: var(--text-glow);
+            max-height: 500px; /* Mais espaço antes de rolar */
+            overflow-y: auto;
+            padding: 0 15px; /* Padding lateral para texto não colar na borda/scrollbar */
+            font-weight: 400; /* Peso normal para leitura */
+             /* Estilização da Barra de Rolagem (Melhorada) */
+            scrollbar-width: thin;
+            scrollbar-color: var(--nebula-purple) rgba(0,0,0,0.3);
+        }
+        #poem-text::-webkit-scrollbar { width: 12px; }
+        #poem-text::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); border-radius: 6px; }
+        #poem-text::-webkit-scrollbar-thumb { background-color: var(--nebula-purple); border-radius: 6px; border: 3px solid rgba(0,0,0,0.3); }
+        #poem-text::-webkit-scrollbar-thumb:hover { background-color: var(--nebula-pink); }
+
+
+        #poem-navigation {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .nav-button {
+            background-color: var(--button-bg);
+            color: var(--star-light);
+            border: 1px solid var(--nebula-pink);
+            padding: 14px 30px; /* Botões maiores */
+            margin: 0 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.1em; /* Texto maior */
+            font-weight: 700;
+            transition: all 0.3s ease; /* Transição para tudo */
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 10px rgba(255, 117, 209, 0.5);
+        }
+        .nav-button:hover:not(:disabled) {
+            background-color: var(--button-hover-bg);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 117, 209, 0.7);
+        }
+        .nav-button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            color: var(--nebula-blue);
+            font-size: 1em; /* Ligeiramente maior */
+            font-weight: 200;
+            z-index: 10;
+            border-top: 1px solid rgba(130, 234, 255, 0.25);
+        }
+         footer p { margin-bottom: 0.5rem; }
+
+    </style>
+</head>
+<body>
+
+    <div id="cosmic-background">
+        <div class="distant-galaxy galaxy-1"></div>
+        <div class="colorful-nebula nebula-1"></div>
+        <div class="colorful-nebula nebula-2"></div>
+        <div id="star-container"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>O Multiverso de Valéria</h1> <p>Poemas de Davi para a Singularidade que Ilumina Todas as Dimensões</p> </header>
+
+        <main>
+            <section id="poem-display">
+                <h2 id="poem-title">Sintonizando Frequência...</h2>
+                <pre id="poem-text">Ajustando telescópio da alma para encontrar as palavras certas no cosmos...</pre>
+            </section>
+
+            <nav id="poem-navigation">
+                <button id="prev-poem" class="nav-button" title="Poema Anterior">&lt; Constelação Anterior</button> <button id="next-poem" class="nav-button" title="Próximo Poema">Próxima Galáxia &gt;</button> </nav>
+        </main>
+    </div>
+
+    <footer>
+        <p>Com um amor que ecoa por todo o sempre, de Davi para sua Valéria.</p>
+        <p>Direto do Coração da Via Láctea (e de São Mateus do Maranhão - MA) ✨ Abril de 2025</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Geração Aprimorada de Estrelas ---
+            const starContainer = document.getElementById('star-container');
+            // Densidade muito maior de estrelas
+            const starDensityFactor = 2; // Menor -> Mais estrelas
+            const maxStars = 1000; // Aumenta o máximo
+            const screenWidth = window.innerWidth;
+            const numberOfStars = Math.min(maxStars, Math.floor(screenWidth / starDensityFactor));
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                const starType = Math.random(); // 0 a 1
+
+                // Tipos de Estrelas: Brilhantes, Coloridas, Normais
+                if (starType > 0.95) { // 5% muito brilhantes
+                    star.classList.add('bright-star');
+                } else if (starType < 0.15) { // 15% com cor sutil
+                    star.style.backgroundColor = Math.random() > 0.4 ? 'var(--star-blue-tint)' : 'var(--star-yellow-tint)';
+                }
+
+                // Tamanho variado (brilhantes podem ser maiores)
+                const baseSize = Math.random() * 1.5 + 0.5; // 0.5px a 2px
+                const finalSize = starType > 0.95 ? baseSize * 1.5 : baseSize; // Brilhantes até 3px
+                star.style.width = `${finalSize}px`;
+                star.style.height = `${finalSize}px`;
+
+                // Posição Aleatória
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.left = `${Math.random() * 100}%`;
+
+                // Animação com Variação
+                star.style.animationDelay = `${Math.random() * 10}s`; // Atraso maior (até 10s)
+                star.style.animationDuration = `${Math.random() * 5 + 4}s`; // Duração 4s-9s
+
+                starContainer.appendChild(star);
+            }
+
+            // --- Geração de Estrelas Cadentes ---
+            const numberOfShootingStars = 3; // Quantas ao mesmo tempo (cuidado com performance)
+            for (let i = 0; i < numberOfShootingStars; i++) {
+                const shootingStar = document.createElement('div');
+                shootingStar.classList.add('shooting-star');
+                // Posição Vertical Aleatória
+                shootingStar.style.top = `${Math.random() * 80 + 10}%`; // Evita muito perto das bordas sup/inf
+                // Delay aleatório para não começarem juntas
+                shootingStar.style.animationDelay = `${Math.random() * 15 + 3}s`; // Delay entre 3s e 18s
+                // Duração aleatória
+                 shootingStar.style.animationDuration = `${Math.random() * 3 + 3}s`; // Duração entre 3s e 6s
+
+                starContainer.appendChild(shootingStar);
+            }
+
+
+            // --- Lista Expandida de Poemas ---
+            const poems = [
+                // 7 Poemas Anteriores (Textos como no exemplo anterior)
+                 { title: "Decifrando o Coração (Binário)", text: `Minha doce Valéria, luz do meu dia, (01001101...)
+Em teu sorriso encontro a mais pura alegria.
+Teus olhos guardam estrelas, meu amor,
+Ao teu lado, Davi sente um eterno calor.
+Meu coração é teu, hoje e sempre, com fervor.
+
+(Do nosso primeiro código de amor)` },
+                { title: "Conexão Quântica", text: `Valéria, você é a [[luz_fotônica]] que ilumina meus [[dias_siderais]].\nSeu [[sorriso.quasar]] executa em mim a mais pura [[energia_vital]].\nEm seus [[olhos_nebulosa]], vejo galáxias de [[ternura_quântica]].\n\nAo seu lado, Davi_Andrômeda sente o [[calor_estelar]] que transcende o [[espaço_tempo]].\nMeu [[coração_pulsar]] vibra em [[ressonância_cósmica]] com o seu,\nUma [[singularidade_afetiva]] estabelecida,\nHoje, amanhã, num [[loop_gravitacional]] de [[amor_infinito]].` },
+                { title: "Receita da Galáxia Valéria", text: `**INGREDIENTES CÓSMICOS:**\n* 1x Essência Pura de Valéria (Núcleo Galáctico Luminoso) ✨\n* Infinitas Partículas de Sorriso (Acelerador de Felicidade) 😊\n* 2x Olhos de Supernova (Atração Fatal com Brilho Intenso) 🌌\n* Campo de Força Afetivo (Emissor de Calor e Segurança) 🔥\n* 1x Coração de Davi (Receptor Sintonizado) ❤️\n\n**INSTRUÇÕES DE FUSÃO:**\n1. Expor o Receptor à **Luz do Núcleo**. (Efeito: Despertar da Alma).\n2. Introduzir as **Partículas de Sorriso**. (Reação: Alegria em expansão universal).\n3. Contemplar os **Olhos de Supernova**. (Alerta: Risco de colapso gravitacional... de amor).\n4. Banhar-se no **Campo de Força Afetivo**. (Resultado: **Calor Eterno** e pertencimento).\n5. Permitir a **sincronização quântica** entre o Coração e a Essência.\n\n**PRODUTO FINAL (Amor V+D):**\n* **Tipo:** Amor de Hipergigante Azul - Intenso, brilhante, com fervor que reescreve as leis da física. 💖\n* **Órbita:** Geoestacionária e Eterna (Hoje & Sempre). ⏳` },
+                { title: "Astro-Boletim do Coração", text: `**ALERTA CÓSMICO - ESTAÇÃO DAVI**\n**DATA ESTELAR:** Perpétua\n**COORDENADAS:** Coração de Davi\n**FENÔMENO CELESTE ATIVO:** Sistema **VALÉRIA MAGNÍFICA**\n\n**CONDIÇÕES ATUAIS:**\n**Radiação de Alegria:** Níveis de Supernova, emitidos por **erupções solares de sorriso**.\n**Luminosidade:** Equivalente a um quasar (luz ofuscante no dia-a-dia).\n**Temperatura Intergaláctica:** Fusão nuclear contínua (calor eterno), conforto absoluto na presença dela.\n\n**PREVISÃO PARA A ETERNIDADE:**\n* **Observação Noturna:** **Nebulosas complexas e galáxias espirais visíveis nos olhos** de Valéria. ✨\n* **Clima Espacial:** **Chuvas de meteoros de felicidade** constantes, intensificadas pelo sorriso. 😊\n* **Forças Fundamentais:** Intensa **força gravitacional afetiva** mantendo Davi em órbita. 🔥\n\n**AVISO AOS NAVEGANTES (DO AMOR):**\nAlerta Nível **TRANSCENDENTAL** de Amor. Rota segura apenas na ecosfera de Valéria. Risco iminente de felicidade absoluta e irreversível. ❤️\n\n**Transmissão:** Observatório Sentimental de Davi.` },
+                { title: "Algoritmo: Coração Estelar", text: `// SISTEMA: AmorInfinito_Valeria.mdl\n// AUTOR: CPU_Davi\n// VERSÃO: Eternidade++\n\nFUNCTION AmorPorValeria() {\n  DEFINE UniversoInterno = new Espaco("Vazio");\n  DEFINE NivelAlegria = 0;\n  DEFINE Coracao = new Hardware("Propriedade: Davi", "Estado: Ocioso");\n\n  LISTENER_ON(Presença.Valeria, () => {\n    UniversoInterno.iluminarCom(Valeria.LuzPropria);\n    LOG("Universo Iluminado.");\n\n    IF (Valeria.Sorriso.detectado()) {\n      NivelAlegria = Constantes.ALEGRIA_MAXIMA_PURPURINADA;\n      LOG("Alegria no nível máximo!");\n    }\n\n    IF (Valeria.Olhos.contemGalaxias()) {\n      LOG("Galáxias detectadas! Perigo de se perder...");\n    }\n\n    IF (Proximidade(Davi, Valeria) == Distancia.ZERO_ABSOLUTO) {\n      AtivarModo.CalorEterno();\n      Coracao.transferirPropriedadePara(Valeria);\n      Coracao.definirEstado("FervorConstante");\n      LOG("Coração pertence a Valéria agora e sempre.");\n    }\n  });\n\n  // Mantém o processo rodando para sempre\n  SET_INTERVAL(() => {\n    IF (Coracao.Proprietario == Valeria) {\n      LOG("Amor por Valéria: Ativo e Constante.");\n    } else {\n      LOG("Aguardando conexão com Valéria...");\n    }\n  }, Ciclo.Infinito);\n}\n\n// Iniciar o programa principal\nAmorPorValeria();` },
+                { title: "Minha Constelação Particular", text: `Não preciso de telescópio, Valéria,\nPara ver as mais belas estrelas.\nElas moram nos teus olhos, mistério,\nE acendem em mim divinas aquarelas.\n\nTeu sorriso é a cauda de um cometa,\nQue ilumina a noite escura da alma.\nSua passagem dissipa qualquer treta,\nE devolve ao meu peito a paz e a calma.\n\nEstar perto de ti é como viajar\nPela Via Láctea, sem sair do lugar.\nÉ sentir o universo conspirar,\nE em teu calor estelar, repousar.\n\nMeu coração, Valéria, é um planeta anão,\nQue só encontra sentido em tua rotação.\nÉ teu, por gravidade e paixão,\nMinha estrela guia, minha eterna canção.` },
+                { title: "Poema de Amor em Órbita", text: `Valéria, meu Sol, centro do meu sistema,\nAo teu redor meu coração faz seu poema.\nCada batida, uma volta, um giro fiel,\nNesta órbita de amor, doce como o mel.\n\nTeus olhos são luas de Júpiter, a brilhar,\nCom segredos que só meu amor pode decifrar.\nTua voz, a frequência que acalma o meu ser,\nSintonia perfeita, meu eterno querer.\n\nQue a força da nossa gravidade jamais cesse,\nQue nosso universo particular só crescesse.\nDe Davi, seu astronauta, em eterna missão,\nExplorando a galáxia do seu coração.` },
+
+                // --- Novos Poemas (8 a 15) ---
+                {
+                    title: "Constelação Valéria",
+                    text: `No mapa celeste do meu coração,\nExiste uma nova constelação.\nNão é Ursa Maior, nem Órion, nem Leão,\nÉ Valéria, brilhando com pura emoção.\n\nCada estrela é um traço teu, singular,\nO sorriso, o olhar, o jeito de amar.\nLigados por linhas de luz e querer,\nFormam a imagem que me faz viver.\n\nÉs meu ponto fixo, meu norte estelar,\nNa noite mais densa, sei onde te encontrar.\nConstelação Valéria, meu eterno lugar.`
+                },
+                {
+                    title: "Buraco Negro de Amor",
+                    text: `Dizem que nada escapa a um buraco negro,\nSua força atrai tudo, sem sossego.\nAssim são teus olhos, Valéria, confesso,\nMe puxam pra ti, num infinito regresso.\n\nNão há horizonte de eventos que me salve,\nMinha alma já cruzou, e por teu amor, clave.\nNessa singularidade quero me perder,\nOnde o tempo e o espaço deixam de valer.\n\nQue me engula teu mistério, teu encanto profundo,\nPois no centro do teu ser, encontro meu mundo.`
+                },
+                {
+                    title: "Supernova de Emoção",
+                    text: `Quando você chegou, Valéria querida,\nFoi como uma supernova em minha vida.\nUma explosão de luz, cor e energia,\nQue varreu a tristeza e a melancolia.\n\nRestaram nebulosas de pura paixão,\nE a força de um amor em constante expansão.\nOs elementos que formam meu ser,\nForam forjados no brilho do seu querer.\n\nSou poeira de estrelas refeita por ti,\nVivendo a beleza que só eu vi,\nNesta supernova eterna de emoção sem fim.`
+                },
+                {
+                    title: "Cometa Valéria",
+                    text: `Como um cometa raro, você surgiu,\nUm brilho inesperado que me seduziu.\nCom cauda de encantos e núcleo de luz,\nAtravessou meu céu, trazendo a minha cruz... de amor.\n\nSua órbita é única, seu brilho, sem par,\nDeixou em meu peito um desejo de te alcançar.\nQue sua passagem não seja breve, meu bem,\nFique em meu sistema solar, hoje e sempre. Amém.`
+                },
+                {
+                    title: "O Universo e Você",
+                    text: `O universo é vasto, infinito, sem fim,\nGaláxias, estrelas, poeira e marfim... (cósmico!)\nMas nada se compara, meu amor, entenda,\nÀ imensidão que sinto quando você me recomenda...\n...um sorriso, um olhar, um toque, um segundo.\n\nDiante de ti, Valéria, o cosmos se cala,\nToda a grandeza lá fora, aqui se iguala\nÀ importância que você tem em meu mundo.\nVocê não é SÓ o universo, você é MAIS fundo.`
+                },
+                {
+                    title: "Tempo Infinito ao Teu Lado",
+                    text: `Dizem que o tempo é relativo, Einstein provou,\nMas ao teu lado, Valéria, ele simplesmente parou.\nCada segundo contigo é eternidade,\nUm presente contínuo de felicidade.\n\nNão há passado ou futuro que importe agora,\nSó o presente infinito que nos devora.\nNeste instante suspenso, de amor e calor,\nO tempo se curva ao nosso favor.\n\nQue este 'agora' perdure, sem nunca acabar,\nNossa bolha de tempo, em pleno mar... de estrelas.`
+                },
+                {
+                    title: "Vazio Iluminado",
+                    text: `Meu peito era um vazio, frio e escuro,\nUm canto esquecido do espaço mais impuro.\nSem estrelas, sem vida, sem som, sem calor,\nAté que chegou você, meu querido amor.\n\nCom teu sorriso, Valéria, a luz se acendeu,\nCom teu olhar, galáxias em mim floresceu.\nO vazio se encheu de vida e canção,\nTransformaste a noite em pura Emoção.\n\nÉs a luz que preenche meu universo interior,\nObrigado por existir, minha estrela, meu amor.`
+                },
+                {
+                    title: "Simplesmente Amor Cósmico",
+                    text: `Entre nebulosas e estrelas a bailar,\nNum universo imenso, difícil de explicar,\nEncontrei em você meu lugar,\nValéria, meu amor, meu eterno amar.\n\nNão há teoria ou fórmula que possa conter,\nA força imensa do meu bem-querer.\nÉ simples, é puro, transcende o saber,\nÉ o cosmos dizendo: eu amo você.\n\nSimplesmente assim,\nSem começo, sem fim,\nDavi para Valéria,\nAmor que não se encerra.`
+                }
+            ];
+
+            // --- Lógica de Navegação (Idêntica à anterior) ---
+            let indicePoemaAtual = 0;
+            const elementoTituloPoema = document.getElementById('poem-title');
+            const elementoTextoPoema = document.getElementById('poem-text');
+            const botaoAnterior = document.getElementById('prev-poem');
+            const botaoProximo = document.getElementById('next-poem');
+
+            function exibirPoema(indice) {
+                if (indice >= 0 && indice < poems.length) {
+                    const poema = poems[indice];
+                    elementoTituloPoema.textContent = poema.title;
+                    elementoTextoPoema.textContent = poema.text;
+                    elementoTextoPoema.scrollTop = 0;
+                }
+                botaoAnterior.disabled = (indice === 0);
+                botaoProximo.disabled = (indice === poems.length - 1);
+            }
+
+            botaoAnterior.addEventListener('click', () => {
+                if (indicePoemaAtual > 0) {
+                    indicePoemaAtual--;
+                    exibirPoema(indicePoemaAtual);
+                }
+            });
+
+            botaoProximo.addEventListener('click', () => {
+                if (indicePoemaAtual < poems.length - 1) {
+                    indicePoemaAtual++;
+                    exibirPoema(indicePoemaAtual);
+                }
+            });
+
+            // Exibe o primeiro poema (índice 0) ao carregar
+            exibirPoema(indicePoemaAtual);
+        });
+    </script>
+
+</body>
+</html>
