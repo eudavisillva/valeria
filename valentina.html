@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memórias Cósmicas da Louise Valentina 🌠</title> <style>
+        /* Importa a fonte 'Exo 2' */
+        @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@200;400;700&display=swap');
+
+        /* Variáveis de Cor Cósmicas */
+        :root {
+            --bg-space-deep: #05020e;
+            --bg-space-mid: #1a0d30;
+            --star-light: #ffffff;
+            --star-bright: #feffea;
+            --star-blue-tint: rgba(173, 216, 230, 0.8);
+            --star-yellow-tint: rgba(255, 255, 200, 0.8);
+            --nebula-pink: #ff75d1;
+            --nebula-purple: #c299ff;
+            --nebula-blue: #82eaff;
+            --nebula-deep-red: rgba(255, 50, 100, 0.7);
+            --galaxy-core: rgba(255, 255, 230, 0.8);
+            --text-glow: #e8e8e8; /* Cor de texto principal clara */
+            --text-secondary: #b0a8c0; /* Cor de texto secundária */
+            --highlight-gold: #f7f3a1;
+            --button-bg: rgba(194, 153, 255, 0.65); /* Roxo nebula */
+            --button-hover-bg: rgba(255, 117, 209, 0.85); /* Rosa nebula */
+            --button-active-bg: var(--highlight-gold);
+            --button-active-text: var(--bg-space-deep);
+             /* Fundo do container mais escuro e com mais opacidade */
+            --container-bg: rgba(5, 2, 14, 0.85);
+             /* Borda e brilho do container */
+            --container-border: var(--nebula-blue);
+            --container-shadow: rgba(130, 234, 255, 0.4);
+             /* Cores das tags de tema ajustadas para fundo escuro */
+            --tag-lilo-bg: #5f9ea0; --tag-lilo-text: #e0ffff; /* CadetBlue, LightCyan */
+            --tag-universo-bg: #483d8b; --tag-universo-text: #e6e6fa; /* DarkSlateBlue, Lavender */
+            --tag-masha-bg: #db7093; --tag-masha-text: #fff0f5; /* PaleVioletRed, LavenderBlush */
+            --tag-galinha-bg: #4682b4; --tag-galinha-text: #f0f8ff; /* SteelBlue, AliceBlue */
+            --tag-geral-bg: #2e8b57; --tag-geral-text: #f5fffa; /* SeaGreen, MintCream */
+        }
+
+        /* --- Reset Básico --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif; /* Nova fonte */
+            background-color: var(--bg-space-deep);
+            /* Fundo com gradientes + nebulosas */
+            background-image:
+                radial-gradient(ellipse 40% 50% at 20% 30%, rgba(130, 234, 255, 0.15) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 60% at 80% 70%, rgba(255, 117, 209, 0.15) 0%, transparent 60%),
+                linear-gradient(140deg, transparent 40%, rgba(194, 153, 255, 0.08) 50%, transparent 60%),
+                linear-gradient(180deg, var(--bg-space-deep) 0%, var(--bg-space-mid) 100%);
+            background-attachment: fixed;
+            color: var(--text-glow); /* Cor de texto padrão clara */
+            line-height: 1.7; /* Ajuste leve */
+            overflow-x: hidden; /* Evita scroll horizontal */
+            min-height: 100vh;
+             /* Flex column para footer colar embaixo se conteúdo for pequeno */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- Efeitos de Fundo Cósmico (CSS) --- */
+        #cosmic-background {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -2; /* Bem no fundo */
+            pointer-events: none;
+            overflow: hidden;
+        }
+        /* Nebulosas e Galáxias Estáticas */
+        .distant-galaxy, .colorful-nebula {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+            filter: blur(40px);
+            animation: fadeInCosmic 15s ease-out forwards;
+            animation-delay: 1s; /* Aparece mais rápido */
+        }
+        @keyframes fadeInCosmic {
+             /* Opacidade final maior */
+            to { opacity: 0.7; filter: blur(30px); }
+        }
+        .galaxy-1 { /* Galáxia exemplo */
+            width: 350px; height: 120px;
+            background: radial-gradient(ellipse at center, var(--galaxy-core) 5%, rgba(194, 153, 255, 0.3) 40%, transparent 70%);
+            top: 15%; left: 10%;
+            transform: rotate(-25deg);
+            opacity: 0.6; filter: blur(20px); animation-delay: 1.5s;
+        }
+        .nebula-1 { /* Nebulosa exemplo 1 */
+            width: 450px; height: 450px;
+            background: radial-gradient(circle at center, var(--nebula-deep-red) 10%, var(--nebula-pink) 35%, var(--nebula-purple) 60%, transparent 80%);
+            bottom: 5%; right: 5%; animation-delay: 2s;
+        }
+         .nebula-2 { /* Nebulosa exemplo 2 */
+            width: 300px; height: 300px;
+            background: radial-gradient(circle at center, var(--nebula-blue) 15%, var(--nebula-purple) 50%, transparent 75%);
+            top: 55%; left: 5%; animation-delay: 2.5s;
+        }
+        /* Container das Estrelas (JS) */
+        #star-container {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1; /* Acima das nebulosas estáticas */
+            pointer-events: none;
+        }
+        /* Estilo Base das Estrelas (JS) */
+        .star {
+            position: absolute;
+            background-color: var(--star-light);
+            border-radius: 50%;
+            box-shadow: 0 0 5px var(--star-light);
+            animation: twinkle 4s infinite ease-in-out alternate;
+        }
+        .bright-star { /* Estrela Brilhante */
+            background-color: var(--star-bright);
+            box-shadow: 0 0 8px var(--star-bright), 0 0 15px var(--star-bright);
+            z-index: 0;
+        }
+        @keyframes twinkle { /* Animação Piscar */
+            from { opacity: 0.3; transform: scale(0.6); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        /* Estrela Cadente */
+        .shooting-star {
+            position: absolute;
+            width: 100px; height: 2px;
+            background: linear-gradient(to left, var(--star-light), transparent);
+            border-radius: 1px;
+            top: 50%; left: 110%; /* Começa fora */
+            z-index: 1;
+            animation: shooting-star-anim 5s linear infinite;
+        }
+        @keyframes shooting-star-anim {
+            0% { transform: translate(0, 0) scale(1); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translate(-150vw, 150vh) scale(0.3); opacity: 0; }
+        }
+
+        /* --- Conteúdo Principal --- */
+        .container {
+            max-width: 1000px; /* Um pouco mais estreito */
+            margin: 3rem auto; /* Espaçamento vertical */
+            padding: 2.5rem; /* Padding interno */
+            background: var(--container-bg);
+            border-radius: 20px; /* Menos arredondado */
+            border: 1px solid var(--container-border);
+            box-shadow: 0 0 30px var(--container-shadow); /* Brilho mais sutil */
+            flex-grow: 1; /* Ocupa espaço vertical disponível */
+            z-index: 10; /* Acima do fundo */
+            backdrop-filter: blur(5px); /* Efeito vidro fosco */
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        /* Ajustes de Contraste DENTRO do container */
+        h1, h2, h3, p, .date {
+            color: var(--text-glow); /* Cor clara padrão para textos */
+        }
+
+        header {
+             text-align: center;
+             margin-bottom: 2.5rem;
+             border-bottom: 1px dashed var(--nebula-purple);
+             padding-bottom: 1.5rem;
+        }
+        header h1 {
+            font-size: 2.8em; /* Tamanho original */
+            font-weight: 700;
+            color: var(--nebula-blue); /* Azul brilhante */
+            text-shadow: 0 0 8px var(--nebula-blue), 0 0 15px var(--nebula-purple);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+        /* Emojis do H1 precisam ser visíveis */
+        header h1::before, header h1::after {
+            text-shadow: none; /* Remove sombra se atrapalhar */
+            color: var(--star-bright); /* Cor brilhante */
+        }
+        header p {
+            font-size: 1.2em;
+            color: var(--nebula-pink);
+            font-weight: 400; /* Peso normal */
+        }
+
+        /* Botões de Filtro */
+        .filter-buttons {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 1rem;
+            background-color: rgba(0, 0, 0, 0.2); /* Fundo escuro sutil */
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border: 1px solid var(--nebula-purple);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+        }
+        .filter-button {
+            background-color: var(--button-bg);
+            color: var(--star-light);
+            border: 1px solid var(--nebula-pink);
+            padding: 10px 22px; /* Tamanho original */
+            border-radius: 25px;
+            font-size: 1em; /* Tamanho original */
+            font-weight: 700;
+            font-family: 'Exo 2', sans-serif; /* Usar a nova fonte */
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 8px rgba(255, 117, 209, 0.4);
+        }
+        .filter-button:hover {
+            background-color: var(--button-hover-bg);
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 3px 15px rgba(255, 117, 209, 0.6);
+        }
+        .filter-button.active {
+            background-color: var(--button-active-bg);
+            color: var(--button-active-text); /* Texto escuro no botão ativo */
+            border-color: var(--star-bright);
+            box-shadow: 0 0 10px var(--highlight-gold);
+            transform: translateY(0) scale(1);
+        }
+        /* Emojis dos botões */
+        .filter-button::before {
+            text-shadow: none;
+            margin-right: 5px;
+        }
+
+        /* Galeria e Itens */
+        main h2 { /* Título "Nossas Lembranças Queridas" */
+             font-size: 1.8em;
+             font-weight: 700;
+             color: var(--highlight-gold);
+             text-align: center;
+             margin-bottom: 2rem;
+             text-shadow: 0 0 8px var(--highlight-gold);
+             border: none; /* Remove borda lateral anterior */
+             padding-left: 0;
+        }
+
+        .memory-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Ajuste minmax */
+            gap: 1.8rem; /* Mais espaço */
+        }
+        .memory-item {
+             /* Fundo claro para conteúdo contrastar com texto claro */
+            background-color: rgba(230, 230, 250, 0.9); /* Lavender com opacidade */
+            border-radius: 15px;
+            padding: 1.3rem; /* Padding interno */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+             /* Borda sutil lilás */
+            border: 1px solid var(--nebula-purple);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+            opacity: 1;
+             /* Cor de texto DENTRO do item precisa ser escura agora */
+             color: #333;
+        }
+         /* Ajustar cores do texto dentro do memory-item para escuras */
+         .memory-item h3, .memory-item p, .memory-item .date {
+              color: #333; /* Cor escura */
+         }
+         .memory-item h3 {
+              font-size: 1.3em; /* Ajuste tamanho */
+              color: #503075; /* Roxo escuro */
+              font-weight: 700;
+         }
+         .memory-item p {
+              font-size: 1em;
+               color: #444;
+         }
+         .memory-item .date {
+             color: #666;
+             font-size: 0.85em;
+         }
+
+         /* Manter emojis nos títulos dos itens */
+         .memory-item h3::before { font-size: 1.1em; margin-right: 8px;}
+
+        .memory-item:hover {
+            transform: translateY(-5px) scale(1.02);
+             /* Sombra mais colorida no hover */
+            box-shadow: 0 8px 20px rgba(194, 153, 255, 0.5);
+        }
+        .memory-item.hidden {
+            opacity: 0;
+            transform: scale(0.9);
+            pointer-events: none;
+        }
+
+        .memory-item img,
+        .memory-item video {
+            max-width: 100%; height: auto; display: block;
+            margin: 1rem 0; border-radius: 8px;
+            border: 2px solid rgba(0, 0, 0, 0.1); /* Borda sutil */
+        }
+        .memory-item audio { width: 100%; margin-top: 1rem; }
+
+        /* Tags de Tema (Ajustadas para fundo claro do item) */
+        .memory-item .theme-tag {
+            display: inline-block; padding: 4px 10px;
+            border-radius: 12px; font-size: 0.75em; margin-top: 10px;
+            font-weight: bold;
+        }
+        /* Usar variáveis de cor definidas no :root */
+        .memory-item[data-theme="lilo"] .theme-tag { background-color: var(--tag-lilo-bg); color: var(--tag-lilo-text); }
+        .memory-item[data-theme="universo"] .theme-tag { background-color: var(--tag-universo-bg); color: var(--tag-universo-text); }
+        .memory-item[data-theme="masha"] .theme-tag { background-color: var(--tag-masha-bg); color: var(--tag-masha-text); }
+        .memory-item[data-theme="galinha"] .theme-tag { background-color: var(--tag-galinha-bg); color: var(--tag-galinha-text); }
+        .memory-item[data-theme="geral"] .theme-tag { background-color: var(--tag-geral-bg); color: var(--tag-geral-text); }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 3rem; /* Menos margem */
+            padding: 1.5rem; /* Menos padding */
+            color: var(--nebula-blue); /* Azul claro */
+            font-size: 0.9em; /* Menor */
+            font-weight: 400;
+            z-index: 10;
+            border-top: 1px solid rgba(130, 234, 255, 0.3); /* Linha azul sutil */
+            /* Remover flex-grow se body já for flex-column */
+        }
+        footer p { margin-bottom: 0.5rem; color: var(--nebula-blue); } /* Garante cor */
+        footer span, footer a { color: var(--nebula-blue); }
+        footer a:hover { color: var(--star-bright); }
+
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .container { margin: 2rem auto; padding: 1.5rem; }
+            header h1 { font-size: 2.3em; }
+            .filter-buttons { gap: 0.8rem; }
+            .filter-button { padding: 8px 18px; font-size: 0.95em; }
+            .memory-gallery { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;}
+        }
+        @media (max-width: 480px) {
+            body { line-height: 1.6; }
+            .container { margin: 1rem auto; padding: 1rem; border-radius: 15px; }
+            header h1 { font-size: 1.9em; }
+            header p { font-size: 1em; }
+            .filter-buttons { justify-content: center; gap: 0.5rem; }
+            .filter-button { padding: 7px 15px; font-size: 0.9em; }
+            .memory-gallery { grid-template-columns: 1fr; gap: 1rem;} /* Uma coluna */
+            main h2 { font-size: 1.5em; }
+            .memory-item { padding: 1rem; }
+            .memory-item h3 { font-size: 1.1em; }
+             /* Esconder algumas nebulosas/estrelas em telas pequenas para performance? (Opcional) */
+             /* .distant-galaxy, .shooting-star { display: none; } */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="cosmic-background">
+        <div class="distant-galaxy galaxy-1"></div>
+        <div class="colorful-nebula nebula-1"></div>
+        <div class="colorful-nebula nebula-2"></div>
+        <div id="star-container"></div>
+    </div>
+
+    <div class="container">
+
+        <header>
+            <h1>Memórias da Louise Valentina</h1>
+            <p>✨ Um baú de tesouros cheio de momentos mágicos! ✨</p>
+        </header>
+
+        <div class="filter-buttons">
+            <button class="filter-button active" data-filter="all">Todos</button>
+            <button class="filter-button" data-filter="photo">Fotos</button>
+            <button class="filter-button" data-filter="video">Vídeos</button>
+            <button class="filter-button" data-filter="audio">Áudios</button>
+        </div>
+
+        <main>
+            <h2>Nossas Lembranças Queridas</h2>
+
+            <div class="memory-gallery">
+
+                <div class="memory-item" data-type="photo" data-theme="geral">
+                    <h3>Primeiro Aniversário!</h3>
+                    <p class="date">DD/MM/AAAA</p>
+                    <img src="URL_DA_FOTO_ANIVERSARIO_AQUI" alt="Louise no primeiro aniversário" loading="lazy">
+                    <p>A festinha de 1 ano foi pura alegria e bolo!</p>
+                    <span class="theme-tag">Momentos Especiais</span>
+                </div>
+
+                <div class="memory-item" data-type="video" data-theme="geral">
+                    <h3>Primeiros Passinhos</h3>
+                    <p class="date">DD/MM/AAAA</p>
+                    <video controls preload="metadata" width="100%">
+                        <source src="URL_DO_VIDEO_PASSINHOS_AQUI#t=0.1" type="video/mp4">
+                        Seu navegador não suporta vídeo.
+                    </video>
+                    <p>Que emoção ver a Louise andando sozinha!</p>
+                    <span class="theme-tag">Momentos Especiais</span>
+                </div>
+
+                 <div class="memory-item" data-type="audio" data-theme="geral">
+                    <h3>Cantando Parabéns</h3>
+                    <p class="date">DD/MM/AAAA</p>
+                     <audio controls preload="metadata">
+                        <source src="URL_DO_AUDIO_PARABENS_AQUI" type="audio/mpeg">
+                         Seu navegador não suporta áudio.
+                    </audio>
+                    <p>A família toda cantando junto!</p>
+                   <span class="theme-tag">Momentos Especiais</span>
+                </div>
+
+                <div class="memory-item" data-type="photo" data-theme="lilo">
+                    <h3>Dia de Filme: Lilo & Stitch</h3>
+                     <p class="date">DD/MM/AAAA</p>
+                    <img src="URL_DA_FOTO_LILO_AQUI" alt="Louise assistindo Lilo & Stitch" loading="lazy">
+                    <p>Tarde de sofá, pipoca e Ohana.</p>
+                    <span class="theme-tag">Lilo & Stitch</span>
+                </div>
+
+                 <div class="memory-item" data-type="photo" data-theme="universo">
+                    <h3>Observando as Estrelas</h3>
+                    <p class="date">DD/MM/AAAA</p>
+                    <img src="URL_DA_FOTO_ESTRELAS_AQUI" alt="Louise olhando o céu estrelado" loading="lazy">
+                    <p>Fascinada com a lua e as estrelinhas brilhantes!</p>
+                    <span class="theme-tag">Universo</span>
+                </div>
+
+                 <div class="memory-item" data-type="photo" data-theme="masha">
+                     <h3>Fantasiada de Masha</h3>
+                     <p class="date">DD/MM/AAAA</p>
+                     <img src="URL_DA_FOTO_MASHA_AQUI" alt="Louise com fantasia da Masha" loading="lazy">
+                     <p>Pronta para muitas travessuras como a Masha!</p>
+                     <span class="theme-tag">Masha e o Urso</span>
+                 </div>
+
+                  <div class="memory-item" data-type="video" data-theme="galinha">
+                      <h3>Dançando Galinha Pintadinha</h3>
+                      <p class="date">DD/MM/AAAA</p>
+                       <video controls preload="metadata" width="100%">
+                           <source src="URL_DO_VIDEO_GALINHA_AQUI#t=0.1" type="video/mp4">
+                           Seu navegador não suporta vídeo.
+                       </video>
+                      <p>Pó, pó, pó! A Louise adora dançar com a turma!</p>
+                      <span class="theme-tag">Galinha Pintadinha</span>
+                  </div>
+
+                 </div> </main>
+
+    </div> <footer>
+         <p>🚀 Viajando pelas estrelas das memórias da Louise Valentina 🌠</p>
+         <p>&copy; <span id="currentYear"></span> - Todos os direitos reservados.</p>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- LÓGICA DE GERAÇÃO DE ESTRELAS (Adaptada do Exemplo) ---
+            const starContainer = document.getElementById('star-container');
+            if (starContainer) {
+                const numberOfStars = 150; // Ajuste a densidade
+                const numberOfShootingStars = 3; // Ajuste a frequência
+
+                // Função para criar estrelas que piscam
+                function createStars() {
+                    for (let i = 0; i < numberOfStars; i++) {
+                        const star = document.createElement('div');
+                        star.classList.add('star');
+                        const starType = Math.random();
+
+                        if (starType > 0.95) { star.classList.add('bright-star'); }
+                        else if (starType < 0.15) {
+                            star.style.backgroundColor = Math.random() > 0.4 ? 'var(--star-blue-tint)' : 'var(--star-yellow-tint)';
+                        }
+
+                        const baseSize = Math.random() * 1.5 + 0.5;
+                        const finalSize = starType > 0.95 ? baseSize * 1.5 : baseSize;
+                        star.style.width = `${finalSize}px`;
+                        star.style.height = `${finalSize}px`;
+
+                        star.style.top = `${Math.random() * 100}%`;
+                        star.style.left = `${Math.random() * 100}%`;
+
+                        star.style.animationDelay = `${Math.random() * 10}s`;
+                        star.style.animationDuration = `${Math.random() * 5 + 4}s`;
+
+                        starContainer.appendChild(star);
+                    }
+                }
+
+                // Função para criar estrelas cadentes
+                function createShootingStars() {
+                     // Limpa estrelas cadentes antigas se necessário (ou deixa a animação CSS remover)
+                    for (let i = 0; i < numberOfShootingStars; i++) {
+                        const shootingStar = document.createElement('div');
+                        shootingStar.classList.add('shooting-star');
+                        shootingStar.style.top = `${Math.random() * 80 + 10}%`;
+                         // Define um novo delay aleatório toda vez que uma termina (via 'animationiteration')
+                         // Ou simplesmente deixa a animação CSS repetir com o delay inicial aleatório.
+                         // Para mais aleatoriedade, precisaríamos de JS mais complexo para recriá-las.
+                         // Por simplicidade, vamos confiar no delay inicial aleatório da animação CSS.
+                        shootingStar.style.animationDelay = `${Math.random() * 15 + i * 5}s`; // Espalha o início
+                        shootingStar.style.animationDuration = `${Math.random() * 3 + 3}s`;
+
+                        starContainer.appendChild(shootingStar);
+                    }
+                }
+
+                createStars(); // Gera as estrelas que piscam
+                createShootingStars(); // Gera as estrelas cadentes iniciais
+
+            } else {
+                 console.warn("Container de estrelas (#star-container) não encontrado.");
+            }
+
+            // --- LÓGICA DE FILTRAGEM (Mesma da versão anterior) ---
+            const currentYearSpan = document.getElementById('currentYear');
+            if (currentYearSpan) {
+                currentYearSpan.textContent = new Date().getFullYear();
+            }
+
+            const filterButtonsContainer = document.querySelector('.filter-buttons');
+            const memoryItems = document.querySelectorAll('.memory-gallery .memory-item');
+            const memoryGallery = document.querySelector('.memory-gallery');
+
+            if (filterButtonsContainer && memoryItems.length > 0 && memoryGallery) {
+                filterButtonsContainer.addEventListener('click', (event) => {
+                    if (event.target.classList.contains('filter-button')) {
+                        const filterValue = event.target.getAttribute('data-filter');
+
+                        filterButtonsContainer.querySelector('.filter-button.active').classList.remove('active');
+                        event.target.classList.add('active');
+                        filterItems(filterValue);
+                    }
+                });
+
+                function filterItems(filter) {
+                    memoryItems.forEach(item => {
+                        const itemType = item.getAttribute('data-type');
+                        const shouldShow = (filter === 'all' || itemType === filter);
+                        if (shouldShow) {
+                            setTimeout(() => { item.classList.remove('hidden'); }, 50);
+                        } else {
+                            item.classList.add('hidden');
+                        }
+                    });
+                }
+                memoryItems.forEach(item => item.classList.remove('hidden'));
+            } else {
+                console.warn("Elementos de filtro ou itens de memória não encontrados.");
+            }
+
+            // --- Outras Interatividades (Opcional) ---
+            memoryGallery.addEventListener('click', (e) => {
+                 if (e.target.tagName === 'IMG') {
+                     console.log('Clicou na imagem:', e.target.alt);
+                     // Poderia adicionar um efeito de 'zoom' ou modal aqui no futuro
+                 }
+             });
+
+            console.log("Página de Memórias Cósmicas da Louise carregada! ✨🚀");
+        });
+    </script>
+
+</body>
+</html>
