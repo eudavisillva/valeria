@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Valeria Jansen Spa & Hair - Salão de Beleza e Spa Premium</title>
+    <meta name="description" content="Experimente tratamentos de beleza e spa de luxo no Valeria Jansen Spa & Hair. Cabelo, estética, massagens e mais. Agende seu momento de cuidado!">
+    <meta name="keywords" content="salão de beleza, spa, cabeleireiro, estética, massagem, manicure, pedicure, Valeria Jansen, agendamento online, beleza premium">
+    <meta name="author" content="Valeria Jansen Spa & Hair">
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* Reset Básico e Configurações Globais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth; /* Rolagem suave */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            overflow-x: hidden; /* Evita barra de rolagem horizontal */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: #6a0dad; /* Roxo suave como cor principal */
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 2.8rem; }
+        h2 { font-size: 2.2rem; text-align: center; margin-bottom: 2.5rem; position: relative; }
+        h3 { font-size: 1.5rem; color: #8a2be2; } /* Roxo mais vibrante para subtítulos */
+
+        /* Linha decorativa abaixo dos títulos H2 */
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: #daa520; /* Dourado suave */
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        a {
+            text-decoration: none;
+            color: #8a2be2;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #daa520;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px; /* Bordas arredondadas para imagens */
+        }
+
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid #eee; /* Separação suave entre seções */
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        /* Header e Navegação */
+        header {
+            background-color: #fff;
+            padding: 15px 0;
+            position: fixed; /* Fixa o header no topo */
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #6a0dad;
+        }
+
+        .logo span {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 300;
+            color: #daa520;
+            display: block;
+            line-height: 1;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            font-weight: 600;
+            color: #333;
+            padding-bottom: 5px;
+            position: relative;
+        }
+
+        nav ul li a::after { /* Efeito sublinhado animado */
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #daa520;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        /* Menu Hambúrguer para Mobile */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #6a0dad;
+        }
+
+        /* Hero Section */
+        #hero {
+            margin-top: 70px; /* Altura do header fixo */
+            background: url('https://via.placeholder.com/1920x800/e8d8f8/6a0dad?text=Imagem+Principal+do+Sal%C3%A3o') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+            padding: 120px 0;
+            position: relative;
+            display: flex; /* Para centralizar conteúdo verticalmente */
+            align-items: center; /* Para centralizar conteúdo verticalmente */
+            min-height: 80vh; /* Altura mínima */
+        }
+
+        #hero::before { /* Overlay escuro para legibilidade */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #eee;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #daa520; /* Dourado */
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 50px; /* Botão arredondado */
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            background-color: #c8941b; /* Dourado mais escuro no hover */
+            transform: translateY(-3px); /* Efeito sutil de elevação */
+            color: #fff;
+        }
+
+        /* Seção Sobre */
+        #sobre {
+            background-color: #fff;
+        }
+
+        .sobre-container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .sobre-texto {
+            flex: 1;
+        }
+
+        .sobre-imagem {
+            flex: 1;
+            max-width: 450px; /* Limita tamanho da imagem */
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+        }
+         .sobre-imagem img {
+             border: 5px solid #fff; /* Borda branca para destacar */
+         }
+
+
+        /* Seção Serviços */
+        #servicos {
+            background-color: #f0e6f6; /* Fundo levemente roxo */
+        }
+
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .servico-item {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .servico-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(106, 13, 173, 0.15); /* Sombra roxa sutil no hover */
+        }
+
+        .servico-item i { /* Ícone (usando Font Awesome como exemplo) */
+            font-size: 2.5rem;
+            color: #daa520;
+            margin-bottom: 15px;
+        }
+
+        .servico-item h3 {
+            margin-bottom: 10px;
+        }
+
+        /* Seção Galeria (Placeholder) */
+        #galeria {
+            background-color: #fff;
+        }
+
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .galeria-item img {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            cursor: pointer;
+        }
+         .galeria-item img:hover {
+             transform: scale(1.05);
+             opacity: 0.85;
+         }
+
+        /* Seção Agendamento */
+        #agendamento {
+            background: linear-gradient(to bottom, #f0e6f6, #fff); /* Gradiente suave */
+        }
+
+        .agendamento-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        #agendamento h2 {
+            margin-bottom: 1.5rem;
+        }
+         #agendamento p {
+             text-align: center;
+             margin-bottom: 2rem;
+             color: #555;
+         }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #8a2be2; /* Roxo mais vibrante no foco */
+            outline: none;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-button {
+            display: block; /* Ocupa largura total */
+            width: 100%;
+            background-color: #8a2be2; /* Roxo */
+            color: #fff;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .submit-button:hover {
+            background-color: #6a0dad; /* Roxo mais escuro */
+            transform: translateY(-2px);
+        }
+
+        #form-status {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+        .success-message { color: green; }
+        .error-message { color: red; }
+
+
+        /* Seção Contato */
+        #contato {
+             background-color: #333;
+             color: #eee;
+        }
+         #contato h2 {
+             color: #fff;
+         }
+        #contato h2::after {
+            background-color: #daa520; /* Dourado */
+        }
+
+        .contato-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+            text-align: center;
+             margin-top: 40px;
+        }
+
+        .contato-item p {
+            margin-bottom: 5px;
+             color: #ccc;
+        }
+        .contato-item strong {
+            color: #fff;
+        }
+        .contato-item a {
+             color: #daa520; /* Dourado para links */
+        }
+        .contato-item a:hover {
+             color: #fff;
+        }
+
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #aaa;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+            color: #aaa;
+        }
+
+        .social-links a {
+            color: #aaa;
+            margin: 0 10px;
+            font-size: 1.4rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #daa520; /* Dourado */
+        }
+
+        /* Animação de Fade-in Suave (Opcional) */
+        .fade-in {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            #hero h1 { font-size: 2.8rem; }
+            h2 { font-size: 1.8rem; }
+            #hero p { font-size: 1rem; }
+
+            .header-container {
+                padding: 0 15px;
+            }
+
+            .menu-toggle {
+                display: block; /* Mostra o ícone do menu */
+            }
+
+            nav ul {
+                display: none; /* Esconde o menu normal */
+                position: absolute;
+                top: 100%; /* Logo abaixo do header */
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                flex-direction: column;
+                text-align: center;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+
+            nav ul.active {
+                display: flex; /* Mostra o menu quando ativo */
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+
+             nav ul li a::after { /* Remove animação sublinhado no mobile menu */
+                display: none;
+             }
+
+            .sobre-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .sobre-imagem {
+                margin-top: 30px;
+                 max-width: 80%;
+            }
+
+            .servicos-grid {
+                 grid-template-columns: 1fr; /* Uma coluna em telas menores */
+            }
+
+            .agendamento-container {
+                padding: 30px;
+            }
+
+            .contato-info {
+                flex-direction: column;
+                gap: 25px;
+            }
+        }
+
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+
+    <header id="main-header">
+        <div class="header-container">
+            <div class="logo">
+                Valeria Jansen
+                <span>Spa & Hair</span>
+            </div>
+            <nav id="main-nav">
+                <div class="menu-toggle" id="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul>
+                    <li><a href="#hero" class="active">Início</a></li>
+                    <li><a href="#sobre">Sobre Nós</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#galeria">Galeria</a></li>
+                    <li><a href="#agendamento">Agendamento</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content fade-in">
+            <h1>Valeria Jansen Spa & Hair</h1>
+            <p>Seu refúgio de beleza e bem-estar. Descubra tratamentos exclusivos e sinta-se renovada.</p>
+            <a href="#agendamento" class="cta-button">Agende Seu Momento</a>
+        </div>
+    </section>
+
+    <section id="sobre" class="fade-in">
+        <div class="container sobre-container">
+            <div class="sobre-texto">
+                <h2>Bem-vinda ao Seu Oásis de Beleza</h2>
+                <p>No Valeria Jansen Spa & Hair, acreditamos que a beleza vem de dentro e se reflete no cuidado que dedicamos a você. Combinamos técnicas modernas, produtos de alta qualidade e um ambiente acolhedor para proporcionar uma experiência única.</p>
+                <p>Nossa fundadora, Valeria Jansen, traz anos de experiência e paixão pelo universo da beleza, liderando uma equipe de profissionais talentosos e dedicados a realçar o seu melhor.</p>
+                <p>Relaxe, rejuvenesça e redescubra sua beleza conosco.</p>
+            </div>
+            <div class="sobre-imagem">
+                <img src="https://via.placeholder.com/450x450/f0e6f6/6a0dad?text=Foto+do+Ambiente+ou+Valeria" alt="Ambiente acolhedor do Valeria Jansen Spa & Hair">
+            </div>
+        </div>
+    </section>
+
+    <section id="servicos" class="fade-in">
+        <div class="container">
+            <h2>Nossos Serviços Exclusivos</h2>
+            <div class="servicos-grid">
+                <div class="servico-item">
+                    <i class="fas fa-cut"></i> <h3>Cortes e Penteados</h3>
+                    <p>Do clássico ao moderno, criamos o visual perfeito para realçar sua beleza natural. Consultoria visagista incluída.</p>
+                </div>
+                <div class="servico-item">
+                    <i class="fas fa-palette"></i> <h3>Coloração e Mechas</h3>
+                    <p>Técnicas avançadas de coloração, mechas, luzes e tratamentos para garantir cores vibrantes e cabelos saudáveis.</p>
+                </div>
+                <div class="servico-item">
+                    <i class="fas fa-spa"></i> <h3>Tratamentos Capilares</h3>
+                    <p>Hidratação profunda, reconstrução, cauterização e terapias para revitalizar seus fios e couro cabeludo.</p>
+                </div>
+                <div class="servico-item">
+                    <i class="fas fa-hand-sparkles"></i> <h3>Manicure e Pedicure</h3>
+                    <p>Cuidados completos para mãos e pés, com esmaltação tradicional, em gel e spa para um relaxamento extra.</p>
+                </div>
+                 <div class="servico-item">
+                    <i class="fas fa-leaf"></i> <h3>Estética Facial</h3>
+                    <p>Limpeza de pele profunda, hidratação, peelings e tratamentos anti-idade para uma pele radiante e saudável.</p>
+                </div>
+                 <div class="servico-item">
+                    <i class="fas fa-hot-tub"></i> <h3>Massagens e Terapias</h3>
+                    <p>Relaxe e alivie o estresse com nossas massagens terapêuticas, relaxantes e modeladoras. Uma pausa para seu corpo e mente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria" class="fade-in">
+        <div class="container">
+            <h2>Inspire-se em Nossos Trabalhos</h2>
+            <p style="text-align:center; max-width: 700px; margin: -1rem auto 2.5rem auto;">Veja alguns dos resultados incríveis que nossa equipe proporciona. Cabelos, unhas e transformações que amamos!</p>
+            <div class="galeria-grid">
+                <div class="galeria-item"><img src="https://via.placeholder.com/300x300/e8d8f8/6a0dad?text=Trabalho+1" alt="Exemplo de trabalho realizado no salão 1"></div>
+                <div class="galeria-item"><img src="https://via.placeholder.com/300x300/f0e6f6/8a2be2?text=Trabalho+2" alt="Exemplo de trabalho realizado no salão 2"></div>
+                <div class="galeria-item"><img src="https://via.placeholder.com/300x300/fff/daa520?text=Trabalho+3" alt="Exemplo de trabalho realizado no salão 3"></div>
+                <div class="galeria-item"><img src="https://via.placeholder.com/300x300/e8d8f8/6a0dad?text=Trabalho+4" alt="Exemplo de trabalho realizado no salão 4"></div>
+                 <div class="galeria-item"><img src="https://via.placeholder.com/300x300/f0e6f6/8a2be2?text=Trabalho+5" alt="Exemplo de trabalho realizado no salão 5"></div>
+                 <div class="galeria-item"><img src="https://via.placeholder.com/300x300/fff/daa520?text=Trabalho+6" alt="Exemplo de trabalho realizado no salão 6"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="agendamento" class="fade-in">
+        <div class="container agendamento-container">
+            <h2>Agende Seu Horário Facilmente</h2>
+            <p>Preencha o formulário abaixo e entraremos em contato pelo WhatsApp para confirmar os detalhes e a disponibilidade.</p>
+
+            <form id="agendamento-form">
+                <div class="form-group">
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" id="nome" name="nome" required placeholder="Seu nome">
+                </div>
+                <div class="form-group">
+                    <label for="whatsapp">WhatsApp (com DDD):</label>
+                    <input type="tel" id="whatsapp" name="whatsapp" required placeholder="Ex: 11999998888">
+                </div>
+                 <div class="form-group">
+                    <label for="email">E-mail (Opcional):</label>
+                    <input type="email" id="email" name="email" placeholder="seu.email@exemplo.com">
+                </div>
+                <div class="form-group">
+                    <label for="servico">Serviço Desejado:</label>
+                    <select id="servico" name="servico" required>
+                        <option value="">Selecione um serviço...</option>
+                        <option value="Corte e Penteado">Corte e Penteado</option>
+                        <option value="Coloração/Mechas">Coloração/Mechas</option>
+                        <option value="Tratamento Capilar">Tratamento Capilar</option>
+                        <option value="Manicure/Pedicure">Manicure/Pedicure</option>
+                        <option value="Estética Facial">Estética Facial</option>
+                        <option value="Massagem/Terapia">Massagem/Terapia</option>
+                        <option value="Outro (descrever)">Outro (descrever abaixo)</option>
+                    </select>
+                </div>
+                 <div class="form-group">
+                    <label for="data">Data Preferida:</label>
+                    <input type="date" id="data" name="data" required>
+                </div>
+                 <div class="form-group">
+                    <label for="hora">Horário Preferido:</label>
+                    <input type="time" id="hora" name="hora" required>
+                </div>
+                <div class="form-group">
+                    <label for="observacoes">Observações (opcional):</label>
+                    <textarea id="observacoes" name="observacoes" rows="3" placeholder="Alguma preferência ou informação adicional?"></textarea>
+                </div>
+                 <div id="form-status"></div> <button type="submit" class="submit-button">Enviar Pedido de Agendamento</button>
+            </form>
+        </div>
+    </section>
+
+     <section id="contato">
+        <div class="container">
+             <h2>Entre em Contato</h2>
+             <div class="contato-info">
+                 <div class="contato-item">
+                     <i class="fas fa-map-marker-alt fa-2x" style="color:#daa520; margin-bottom: 10px;"></i>
+                     <p><strong>Endereço:</strong></p>
+                     <p>Av. João Castelo, S/n, Ao lado da Big Distribuidora, Centro</p>
+                     <p>Pirapemas - Maranhão</p>
+                 </div>
+                 <div class="contato-item">
+                     <i class="fas fa-phone-alt fa-2x" style="color:#daa520; margin-bottom: 10px;"></i>
+                     <p><strong>Telefone / WhatsApp Direto:</strong></p>
+                     <p><a href="https://wa.me/5598985867414" target="_blank">(98) 9 85867414</a></p>
+                 </div>
+                 <div class="contato-item">
+                    <i class="fas fa-clock fa-2x" style="color:#daa520; margin-bottom: 10px;"></i>
+                     <p><strong>Horário de Funcionamento:</strong></p>
+                     <p>Terça a Sábado: 9h às 19h</p>
+                     <p>Domingo e Segunda: Fechado</p>
+                     </div>
+             </div>
+        </div>
+    </section>
+
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                 <a href="http://instagram.com/vall_jansen" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/valeria.Janse" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://wa.me/5598985867414" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p>&copy; <span id="current-year"></span> Valeria Jansen Spa & Hair. Todos os direitos reservados.</p>
+            <p>Desenvolvido com ❤️</p> </div>
+    </footer>
+
+    <script>
+        // --- Menu Mobile ---
+        const mobileMenuToggle = document.getElementById('mobile-menu');
+        const mainNav = document.getElementById('main-nav').querySelector('ul');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            // Troca o ícone de barras para X e vice-versa
+            const icon = mobileMenuToggle.querySelector('i');
+            if (mainNav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Fecha o menu mobile ao clicar em um link
+        document.querySelectorAll('#main-nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    mobileMenuToggle.querySelector('i').classList.remove('fa-times');
+                    mobileMenuToggle.querySelector('i').classList.add('fa-bars');
+                }
+            });
+        });
+
+
+        // --- Atualizar Link Ativo na Navegação com Scroll ---
+        const sections = document.querySelectorAll('section[id]'); // Pega todas as seções com ID
+        const navLinks = document.querySelectorAll('#main-nav ul li a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const headerHeight = document.getElementById('main-header').offsetHeight;
+
+            sections.forEach( section => {
+                const sectionTop = section.offsetTop - headerHeight - 50; // Ajuste de offset
+                 // const sectionHeight = section.clientHeight; // Desnecessário se usar sectionTop <= scrollY
+                // Verifica se a posição atual de scroll está dentro da seção
+                //if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                 if (pageYOffset >= sectionTop) { // Mais simples e eficaz na maioria dos casos
+                     current = section.getAttribute('id');
+                 }
+            });
+
+            navLinks.forEach( link => {
+                link.classList.remove('active');
+                 // Remove a classe 'active' do link se o href dele for igual à seção atual
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+
+             // Caso especial para o topo da página (Hero)
+             if (pageYOffset < document.getElementById('sobre').offsetTop - headerHeight - 50) {
+                 navLinks.forEach(link => link.classList.remove('active'));
+                 document.querySelector('#main-nav ul li a[href="#hero"]').classList.add('active');
+             }
+        });
+
+
+        // --- Formulário de Agendamento para WhatsApp ---
+        const form = document.getElementById('agendamento-form');
+        const formStatus = document.getElementById('form-status');
+        // IMPORTANTE: Substitua pelo número REAL do WhatsApp do salão, com código do país (55 para Brasil)
+        const whatsappNumber = "5598985867414"; // Ex: 5511999998888
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+            formStatus.textContent = ''; // Limpa mensagens anteriores
+            formStatus.className = ''; // Limpa classes de estilo anteriores
+
+            // Validação básica (campos required já ajudam)
+            const nome = document.getElementById('nome').value.trim();
+            const whatsapp = document.getElementById('whatsapp').value.trim();
+            const servico = document.getElementById('servico').value;
+            const data = document.getElementById('data').value;
+            const hora = document.getElementById('hora').value;
+             const email = document.getElementById('email').value.trim();
+             const observacoes = document.getElementById('observacoes').value.trim();
+
+            if (!nome || !whatsapp || !servico || !data || !hora) {
+                formStatus.textContent = 'Por favor, preencha todos os campos obrigatórios.';
+                 formStatus.className = 'error-message';
+                return; // Interrompe a execução se campos obrigatórios estão vazios
+            }
+
+            // Formata a mensagem para o WhatsApp
+            let mensagem = `*Novo Pedido de Agendamento*\n\n`;
+            mensagem += `*Nome:* ${nome}\n`;
+            mensagem += `*WhatsApp:* ${whatsapp}\n`;
+            if (email) {
+                 mensagem += `*E-mail:* ${email}\n`;
+            }
+            mensagem += `*Serviço:* ${servico}\n`;
+            mensagem += `*Data Preferida:* ${new Date(data + 'T00:00:00').toLocaleDateString('pt-BR')}\n`; // Formata a data
+            mensagem += `*Horário Preferido:* ${hora}\n`;
+            if (observacoes) {
+                mensagem += `*Observações:* ${observacoes}\n`;
+            }
+            mensagem += `\n_Por favor, aguarde a confirmação._`;
+
+            // Codifica a mensagem para URL
+            const mensagemCodificada = encodeURIComponent(mensagem);
+
+            // Cria o link do WhatsApp
+            // Usar wa.me é mais universal que api.whatsapp.com
+            const whatsappLink = `https://wa.me/${whatsappNumber}?text=${mensagemCodificada}`;
+
+             // Exibe mensagem de sucesso e redireciona (opcionalmente, após um pequeno delay)
+            formStatus.textContent = 'Preparando seu contato via WhatsApp...';
+            formStatus.className = 'success-message';
+
+            // Abre o link do WhatsApp em uma nova aba/janela
+            setTimeout(() => {
+                 window.open(whatsappLink, '_blank');
+                  // Limpa o formulário após sucesso (opcional)
+                  // form.reset();
+                  // formStatus.textContent = 'Pedido enviado! Verifique seu WhatsApp.';
+             }, 1000); // Pequeno delay para o usuário ler a mensagem
+
+        });
+
+         // --- Adicionar ano atual no footer ---
+         document.getElementById('current-year').textContent = new Date().getFullYear();
+
+         // --- Animação Fade-in ao rolar a página ---
+         const fadeInElements = document.querySelectorAll('.fade-in');
+
+         const observerOptions = {
+           root: null, // Observa em relação ao viewport
+           rootMargin: '0px',
+           threshold: 0.1 // Aciona quando 10% do elemento está visível
+         };
+
+         const observer = new IntersectionObserver((entries, observer) => {
+           entries.forEach(entry => {
+             if (entry.isIntersecting) {
+               entry.target.classList.add('visible');
+               // Opcional: parar de observar depois que animação ocorrer
+               // observer.unobserve(entry.target);
+             }
+             // Opcional: remover a classe se sair da tela (para animar de novo)
+             // else {
+             //   entry.target.classList.remove('visible');
+             // }
+           });
+         }, observerOptions);
+
+         fadeInElements.forEach(el => {
+           observer.observe(el);
+         });
+
+          //--- Validação simples de Telefone/WhatsApp (apenas números) ---
+         const whatsappInput = document.getElementById('whatsapp');
+         whatsappInput.addEventListener('input', function(e) {
+             // Remove qualquer caractere que não seja dígito
+             this.value = this.value.replace(/\D/g, '');
+         });
+
+         //--- Configurar data mínima no input date para hoje ---
+         const today = new Date().toISOString().split('T')[0];
+         document.getElementById("data").setAttribute('min', today);
+
+    </script>
+
+</body>
+</html>
